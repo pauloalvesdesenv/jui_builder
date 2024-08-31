@@ -40,6 +40,8 @@ dependencies:
   flutter_bloc: ^8.1.6
   get_it: ^7.7.0
   injectable: ^2.4.4
+  jsonata: ^0.0.6
+  rfc_6901: ^0.2.0
 
 dev_dependencies:
   flutter_test:

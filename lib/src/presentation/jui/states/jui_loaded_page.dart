@@ -1,7 +1,8 @@
 import 'package:flutter/widgets.dart';
+import 'package:jui_builder/src/presentation/widget/jui/jui_factory.dart';
 
 class JuiLoadedPage extends StatefulWidget {
-  final Map<String, dynamic> json;
+  final dynamic json;
   const JuiLoadedPage({required this.json, super.key});
 
   @override
@@ -11,6 +12,6 @@ class JuiLoadedPage extends StatefulWidget {
 class _JuiLoadedPage extends State<JuiLoadedPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return JuiFactory().build(context, widget.json);
   }
 }

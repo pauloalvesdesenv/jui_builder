@@ -9,21 +9,28 @@ class JUIPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<JuiCubit>(
-      create: (_) => GetIt.I.get<JuiCubit>()..onInit(),
-      child: BlocBuilder<JuiCubit, JuiState>(
-        builder: (_, state) {
-          if (state is JuiLoadingState) {
-            return const SizedBox.shrink();
-          }
-          if (state is JuiErrorState) {
-            return const SizedBox.shrink();
-          }
-          if (state is JuiLoadedState) {
-            return JuiLoadedPage(json: state.jui);
-          }
-          throw Exception();
-        },
+    return Material(
+      child: BlocProvider<JuiCubit>(
+        create: (_) => GetIt.I.get<JuiCubit>()..onInit(),
+        child: BlocBuilder<JuiCubit, JuiState>(
+          builder: (_, state) {
+            if (state is JuiLoadingState) {
+              return const Text(
+                'Loading',
+                style: TextStyle(color: Colors.white),
+              );
+            }
+            if (state is JuiErrorState) {
+              return Text(
+                state.message,
+              );
+            }
+            if (state is JuiLoadedState) {
+              return JuiLoadedPage(json: state.jui);
+            }
+            throw Exception();
+          },
+        ),
       ),
     );
   }
