@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:jui_builder/src/data/jui_data_source.dart';
+import 'package:jui_builder/src/data/data_source/jui_data_source.dart';
 import 'package:jui_builder/src/domain/repository/jui_repository.dart';
 
 @Injectable(as: JuiRepository)

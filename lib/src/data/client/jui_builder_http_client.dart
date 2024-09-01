@@ -1,0 +1,23 @@
+import 'package:dio/dio.dart';
+
+abstract class JuiBuilderHttpClient {
+  Future<void> setup(String baseUrl);
+  Future<Response> get(String path);
+}
+
+class JuiBulderHttpClientImpl implements JuiBuilderHttpClient {
+  final Dio _dio;
+
+  JuiBulderHttpClientImpl(this._dio);
+
+  @override
+  Future<void> setup(String baseUrl) async {
+    _dio.options.baseUrl = baseUrl;
+    _dio.interceptors.add(LogInterceptor());
+  }
+
+  @override
+  Future<Response> get(String path) async {
+    return _dio.get(path);
+  }
+}

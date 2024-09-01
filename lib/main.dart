@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jui_builder/di/inejctable.dart';
-import 'package:jui_builder/src/presentation/jui/jui_page.dart';
+import 'package:jui_builder/di/injectable.dart';
+import 'package:jui_builder/src/presentation/base/base_page.dart';
 
 void main() {
   configureDependencies();
@@ -14,7 +14,7 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SafeArea(child: JUIPage()),
+      home: SafeArea(child: BasePage()),
     );
   }
 }

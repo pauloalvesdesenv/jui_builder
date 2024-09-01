@@ -1,8 +1,7 @@
-import 'dart:convert';
-
 import 'package:injectable/injectable.dart';
 
 import 'package:dio/dio.dart';
+import 'package:jui_builder/src/data/client/jui_builder_http_client.dart';
 
 abstract class JuiDataSource {
   Future<dynamic> getJson();
@@ -10,13 +9,13 @@ abstract class JuiDataSource {
 
 @Injectable(as: JuiDataSource)
 class JuiRemoteDataSourceImpl implements JuiDataSource {
-  final Dio _dio;
+  final JuiBuilderHttpClient client;
 
-  JuiRemoteDataSourceImpl(this._dio);
+  JuiRemoteDataSourceImpl(this.client);
 
   @override
   Future<dynamic> getJson() async {
-    final response = await _dio
+    final response = await client
         .get('https://run.mocky.io/v3/01d52428-ea65-4343-bfab-d432f6ca0a6c');
     return response.data;
   }
