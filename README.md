@@ -36,6 +36,10 @@ O consumo do JSON na aplicação é realizado na camada de *Data Source* dentro 
 
 - **Via Remoto**: O JSON é consumido de uma API remota. Para testar essa funcionalidade, você pode criar uma API mockada utilizando [Mocky](https://designer.mocky.io/). Após criar o mock, insira o path para o recurso no código.
 
+## Testando a leitura de QR Code
+
+Ao abrir a aplicação pela primeira vez, será exibida uma câmera para a leitura de um QR code. No entanto, para facilitar os testes, após 5 segundos será executada uma função que simula a leitura do QR code. Em um segundo momento, essa função será removida, e um QR code real será gerado para testes de leitura.
+
 ## Documentação adicional
 
 - **Exemplo de JSON**: Para entender como estruturar o JSON, consulte a [documentação de exemplo](https://github.com/peiffer-innovations/json_dynamic_widget/tree/main/json_dynamic_widget/example/assets/pages).
