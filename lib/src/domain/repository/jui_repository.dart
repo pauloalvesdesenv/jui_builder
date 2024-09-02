@@ -1,3 +1,3 @@
 abstract class JuiRepository {
-  Future<dynamic> getJson();
+  Future<Map<String, dynamic>> getJson();
 }

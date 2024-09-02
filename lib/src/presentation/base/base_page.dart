@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:jui_builder/src/presentation/base/base_cubit.dart';
-import 'package:jui_builder/src/presentation/jui/jui_cubit.dart';
 import 'package:jui_builder/src/presentation/jui/jui_page.dart';
-import 'package:jui_builder/src/presentation/jui/states/jui_loaded_page.dart';
 import 'package:jui_builder/src/presentation/scan/scan_page.dart';
 
 class BasePage extends StatelessWidget {

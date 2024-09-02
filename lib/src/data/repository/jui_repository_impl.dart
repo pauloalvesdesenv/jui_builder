@@ -9,5 +9,5 @@ class JuiRepositoryImpl implements JuiRepository {
   JuiRepositoryImpl(this._juiDataSource);
 
   @override
-  Future<dynamic> getJson() => _juiDataSource.getJson();
+  Future<Map<String, dynamic>> getJson() => _juiDataSource.getJson();
 }

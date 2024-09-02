@@ -1,37 +1,33 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
+import 'package:jui_builder/src/data/client/jui_builder_http_client.dart';
 import 'package:jui_builder/src/data/models/framework_meta_data_model.dart';
 import 'package:jui_builder/src/domain/errors/framework_meta_data_errors.dart';
 import 'package:jui_builder/src/domain/repository/framework_meta_data_repository.dart';
 
-abstract class BaseState extends Equatable {}
+abstract class BaseState {}
 
-class BaseLoadingState extends BaseState {
-  @override
-  List<Object> get props => [];
-}
+class BaseLoadingState extends BaseState {}
 
 class BaseErrorState extends BaseState {
   final String message;
 
   BaseErrorState(this.message);
-  @override
-  List<Object> get props => [];
 }
 
 class BaseLoadedState extends BaseState {
   final FrameworkMetaDataResponseModel? frameworkMetaDataResponseModel;
 
   BaseLoadedState({this.frameworkMetaDataResponseModel});
-
-  @override
-  List<Object?> get props => [frameworkMetaDataResponseModel];
 }
 
+@Injectable()
 class BaseCubit extends Cubit<BaseState> {
   final FrameworkMetaDataRepository frameworkMetaDataRepository;
+  final JuiBuilderHttpClient httpClient;
 
-  BaseCubit(this.frameworkMetaDataRepository) : super(BaseLoadingState());
+  BaseCubit(this.frameworkMetaDataRepository, this.httpClient)
+      : super(BaseLoadingState());
 
   Future<void> onInit() async {
     await fetchFrameworkMetaData();
@@ -41,6 +37,7 @@ class BaseCubit extends Cubit<BaseState> {
     try {
       final frameworkMetaDataResponseModel =
           await frameworkMetaDataRepository.getFrameworkMetaData();
+      httpClient.setup(frameworkMetaDataResponseModel.url);
       emit(BaseLoadedState(
           frameworkMetaDataResponseModel: frameworkMetaDataResponseModel));
     } on FrameworkMetaDataNotFound catch (_) {

@@ -1,10 +1,12 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 
 abstract class JuiBuilderHttpClient {
   Future<void> setup(String baseUrl);
   Future<Response> get(String path);
 }
 
+@Injectable(as: JuiBuilderHttpClient)
 class JuiBulderHttpClientImpl implements JuiBuilderHttpClient {
   final Dio _dio;
 

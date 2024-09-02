@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -20,7 +18,7 @@ class JuiErrorState extends JuiState {
 }
 
 class JuiLoadedState extends JuiState {
-  final dynamic jui;
+  final Map<String, dynamic> jui;
   JuiLoadedState(this.jui);
 }
 
@@ -41,5 +39,5 @@ class JuiCubit extends Cubit<JuiState> {
     }
   }
 
-  Future<dynamic> fetchJsonUI() async => juiRepository.getJson();
+  Future<Map<String, dynamic>> fetchJsonUI() async => juiRepository.getJson();
 }
